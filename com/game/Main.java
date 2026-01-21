@@ -6,10 +6,8 @@ import com.game.*;
 
 public class Main{
     static Scanner scanner = new Scanner(System.in);
-    static Player player = new Player("default");
     public static void main(String args[]){
         intro();
-        gameLoop();
     }
 
     public static void intro(){
@@ -19,21 +17,34 @@ public class Main{
         System.out.print("enter player name:");
 
         String name  = scanner.nextLine();
-        player.setName(name);
+        Player player = new Player(name);
 
         System.out.println("Welcome " + name + "!");
+        gameLoop(player);
 
     }
 
-    public static void gameLoop(){
+    public static void gameLoop(Player player){
+
+
         int days = 0;
         boolean playing = true;
 
-        while(playing){
+        while(player.getHealth() > 0 && playing){
             System.out.println("Day " + days);
-            //game logic here
+            System.out.println("tasks:" + player.getTasks().size());
+            System.out.println("Health:" + player.getHealth());
+            System.out.println("Inventory:" + player.getInventory().size() + " items");
+            System.out.println("Study Points:" + player.getStudyPoints(););
+
+
+            player.tick();
             days++;
         }
+    }
+
+    void toDay(){
+
     }
 }
 

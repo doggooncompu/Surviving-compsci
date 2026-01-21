@@ -1,13 +1,14 @@
 package com.game;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import com.game.*;
 
 public class Player {
     private double health;
-    private int level;
     private String name; 
+    private int StudyPoints;
+    private int energy;
+
 
     private ArrayList<task> tasks = new ArrayList<>();
 
@@ -52,15 +53,6 @@ public class Player {
         this.name = name;
     }
 
-    public void setLevel(int level){
-        this.level = level;
-    }
-
-
-    public int getLevel(){
-        return this.level;
-    }
-
 
     public ArrayList<task> getTasks(){
         return this.tasks;
@@ -74,6 +66,11 @@ public class Player {
         for(task t : this.tasks){
             t.time();
         }
+    }
+
+
+    public int getStudyPoints(){
+        return this.StudyPoints;
     }
 
 
