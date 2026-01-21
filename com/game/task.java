@@ -10,7 +10,7 @@ public class task {
     private int daystoComplete;
 
 
-    
+
     public void setDescription(String description){
         this.description = description;
     }
@@ -44,6 +44,10 @@ public class task {
     }
     public Item getRewardItem(){
         return this.rewardItem;
+    }
+
+    public void time(){
+        this.daystoComplete = this.daystoComplete - 1;
     }
 
 }

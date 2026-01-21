@@ -70,6 +70,12 @@ public class Player {
         this.tasks.add(task);
     }
 
+    public void tick(){
+        for(task t : this.tasks){
+            t.time();
+        }
+    }
+
 
 
 }
