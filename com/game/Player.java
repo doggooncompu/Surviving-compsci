@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import com.game.*;
 
 public class Player {
-    private double health;
+    private double health = 10;
     private String name; 
     private int StudyPoints;
     private int energy;
 
 
-    private ArrayList<task> tasks = new ArrayList<>();
+    private ArrayList<Task> tasks = new ArrayList<>();
 
     private ArrayList<Item> inventory = new ArrayList<>();
 
@@ -54,16 +54,16 @@ public class Player {
     }
 
 
-    public ArrayList<task> getTasks(){
+    public ArrayList<Task> getTasks(){
         return this.tasks;
     }
     
-    public void addTask(task task){
+    public void addTask(Task task){
         this.tasks.add(task);
     }
 
     public void tick(){
-        for(task t : this.tasks){
+        for(Task t : this.tasks){
             t.time();
         }
     }
@@ -73,6 +73,21 @@ public class Player {
         return this.StudyPoints;
     }
 
+    public void addStudyPoints(int StudyPoints){
+        this.StudyPoints += StudyPoints;
+    }
 
+    public void getEnergy(int energy){
+        this.energy += energy;
+    }
+
+    public void useEnergy(int energy){
+        this.energy -= energy;
+    }
+
+
+    public void restoreEnergy(int energy){
+        this.energy += energy;
+    }
 
 }

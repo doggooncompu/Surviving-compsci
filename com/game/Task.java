@@ -1,9 +1,7 @@
 package com.game;
 
-public class task {
-    private String description;
+public class Task {
     private boolean completed;
-    private int rewardXP;
     private int penaltyHealth;
 
     private Item rewardItem;
@@ -11,29 +9,20 @@ public class task {
 
 
 
-    public void setDescription(String description){
-        this.description = description;
-    }
-    public String getDescription(){
-        return this.description;
-    }
+ 
     public void setCompleted(boolean completed){
         this.completed = completed;
     }
     public boolean isCompleted(){
         return this.completed;
     }
-    public task(String description, int rewardXP, int penaltyHealth, int daystoComplete){
-        this.description = description;
-        this.rewardXP = rewardXP;
+    public Task( int penaltyHealth, int daystoComplete){
         this.penaltyHealth = penaltyHealth;
         this.daystoComplete = daystoComplete;
         this.completed = false;
     }
 
-    public int getRewardXP(){
-        return this.rewardXP;
-    }
+
 
     public int getPenaltyHealth(){
         return this.penaltyHealth;
@@ -49,5 +38,8 @@ public class task {
     public void time(){
         this.daystoComplete = this.daystoComplete - 1;
     }
+
+
+
 
 }
