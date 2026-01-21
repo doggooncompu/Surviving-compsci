@@ -1,0 +1,12 @@
+enum itemtypes{
+    LEVEL_1_HEALING,
+    LEVEL_2_HEALING,
+    LEVEL_3_HEALING,
+    LEVEL_4_HEALING,
+    LEVEL_5_HEALING,
+    KEY,
+    level_1_DAMAGE,
+    level_2_DAMAGE,
+    LEVEL_3_DAMAGE,
+    LEVEL_4_DAMAGE
+}
