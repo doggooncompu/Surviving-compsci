@@ -6,9 +6,10 @@ import com.game.*;
 
 public class Main{
     static Scanner scanner = new Scanner(System.in);
-    static Player player;
+    static Player player = new Player("default");
     public static void main(String args[]){
         intro();
+        gameLoop();
     }
 
     public static void intro(){
@@ -18,10 +19,20 @@ public class Main{
         System.out.print("enter player name:");
 
         String name  = scanner.nextLine();
-        player = new Player(name);
+        player.setName(name);
 
         System.out.println("Welcome " + name + "!");
-        
+
+    }
+
+    public static void gameLoop(){
+        int days = 0;
+        boolean playing = true;
+        while(playing){
+            
+
+            days++;
+        }
     }
 }
 

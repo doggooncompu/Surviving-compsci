@@ -33,11 +33,11 @@ public class Player {
         return this.name;
     }
 
-    public double getHealth(){
+     public double getHealth(){
         return this.health;
     }
 
-    public void addItem(Item item){
+     public void addItem(Item item){
         this.inventory.add(item);
     }
 
@@ -45,6 +45,14 @@ public class Player {
         return this.inventory;
     }
 
-    
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void setLevel(int level){
+        this.level = level;
+    }
+
+
 
 }
