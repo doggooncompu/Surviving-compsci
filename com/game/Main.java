@@ -28,9 +28,10 @@ public class Main{
     public static void gameLoop(){
         int days = 0;
         boolean playing = true;
-        while(playing){
-            
 
+        while(playing){
+            System.out.println("Day " + days);
+            //game logic here
             days++;
         }
     }

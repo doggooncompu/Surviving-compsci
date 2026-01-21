@@ -1,5 +1,6 @@
 package com.game;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import com.game.*;
 
@@ -7,6 +8,8 @@ public class Player {
     private double health;
     private int level;
     private String name; 
+
+    private ArrayList<task> tasks = new ArrayList<>();
 
     private ArrayList<Item> inventory = new ArrayList<>();
 
@@ -51,6 +54,20 @@ public class Player {
 
     public void setLevel(int level){
         this.level = level;
+    }
+
+
+    public int getLevel(){
+        return this.level;
+    }
+
+
+    public ArrayList<task> getTasks(){
+        return this.tasks;
+    }
+    
+    public void addTask(task task){
+        this.tasks.add(task);
     }
 
 
