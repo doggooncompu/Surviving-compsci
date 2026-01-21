@@ -1,4 +1,6 @@
-enum itemtypes{
+package com.game;
+
+public enum itemtypes{
     LEVEL_1_HEALING,
     LEVEL_2_HEALING,
     LEVEL_3_HEALING,

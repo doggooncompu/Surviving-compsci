@@ -26,7 +26,7 @@ public class Player {
     }
 
     public void heal(int amount){
-        
+
     }
 
 }
