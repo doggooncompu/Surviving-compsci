@@ -26,7 +26,25 @@ public class Player {
     }
 
     public void heal(int amount){
-
+        this.health = this.health + amount;
     }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public double getHealth(){
+        return this.health;
+    }
+
+    public void addItem(Item item){
+        this.inventory.add(item);
+    }
+
+    public ArrayList<Item> getInventory(){
+        return this.inventory;
+    }
+
+    
 
 }
