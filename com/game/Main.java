@@ -37,53 +37,103 @@ public class Main{
         boolean playing = true;
 
         while(player.getHealth() > 0 && playing){
-            System.out.println("Day " + days);
-            System.out.println("tasks:" + player.getTasks().size());
-            System.out.println("Health:" + player.getHealth());
-            System.out.println("Inventory:" + player.getInventory().size() + " items");
-            System.out.println("Study Points:" + player.getStudyPoints());
-
-
+            System.out.println("\n\n\nDay " + days);
+            toDay(days, player);
             player.tick();
+
             days++;
         }
     }
 
-    void toDay(int day, Player player){
+    static void toDay(int day, Player player){
         if(random.nextInt(100) < 50 - day){
             System.out.println("random task has been assigned");
-            player.addTask(new Task( 5, 3));
+            player.addTask(new Task( random.nextInt(5) + 1, random.nextInt(5) + 3, random.nextInt(5) + 2, new Item()));
         }
+        int choice = 0;
+        while(!(choice ==6 || choice == 4 || choice ==3 ||choice == 5) ){
+            System.out.println("What would you like to do?");
+            System.out.println("1. View Tasks \n 2. View Inventory \n 3. Rest \n 4. Study \n 5.do a task \n 6. Quit Game");
+            choice = scanner.nextInt();
 
-        System.out.println("A new day begins...");
+            switch(choice){
+                case 1: 
+                    System.out.println("Tasks:");
+                    for(Task t : player.getTasks()){
+                        System.out.println("- " + t.getDaystoComplete() + " days left to complete | Penalty Health: " + t.getPenaltyHealth() + " | Completed: " + t.isCompleted());
+                    }
+                    break;
+                case 2:
+                    System.out.println("Inventory:");
+                    for(Item i : player.getInventory()){
+                        System.out.println("- " + i.getName());
+                    }
+                    break;
+                case 3:
+                    System.out.println("You take a rest and recover 2 energy and 2 health.");
+                    player.restoreEnergy(2);
+                    player.heal(2);
+                    break;
+                case 4:
+                    System.out.println("You study hard and earn 5 study points, but lose energy.");
+                    player.useEnergy(3);
+                    player.addStudyPoints(5);
+                    break;
 
-        System.out.println("What wo`uld you like to do?");
-        System.out.println("1. View Tasks \n 2. View Inventory \n 3. Rest \n 4. Study \n 5. Use Item \n 6. Quit Game");
-        int choice = scanner.nextInt();
 
-        switch(choice){
-            case 1: 
-                System.out.println("Tasks:");
-                for(Task t : player.getTasks()){
-                    System.out.println("- " + t.getDaystoComplete() + " days left to complete | Penalty Health: " + t.getPenaltyHealth() + " | Completed: " + t.isCompleted());
-                }
-                break;
-            case 2:
-                System.out.println("Inventory:");
-                for(Item i : player.getInventory()){
-                    System.out.println("- " + i.getName());
-                }
-            case 3:
-                System.out.println("You take a rest and recover 2 health.");
-                player.heal(2);
-                break;
-            case 4:
-                System.out.println("You study hard and earn 5 study points, but lose energy.");
-                player.useEnergy(3);
+                case 5:
+                    System.out.println("Which task would you like to complete?");
+                    for(int i = 0; i < player.getTasks().size(); i++){
+                        Task t = player.getTasks().get(i);
+                        System.out.println((i+1) + ". " + t.getDaystoComplete() + " days left to complete | Penalty Health: " + t.getPenaltyHealth() + " | Completed: " + t.isCompleted());
+                    }
+                    int taskChoice = scanner.nextInt() - 1;
+                    if(taskChoice >=0 && taskChoice < player.getTasks().size()){
+                        Task selectedTask = player.getTasks().get(taskChoice);
+                        if(selectedTask.isCompleted()){
+                            System.out.println("task has been completed");
+                        }else if(player.getEnergy() < selectedTask.getenergyRequired()){
+                            selectedTask.subtractEnergyRequired(player.getEnergy());
+                            player.useEnergy(player.getEnergy());
+                            System.out.println("You don't have enough energy to complete this task. You used all your energy, but still need " + selectedTask.getenergyRequired() + " more energy to complete the task.");
+                        }else{
+                            player.useEnergy(selectedTask.getenergyRequired());
+                            selectedTask.setCompleted(true);
+                            if(selectedTask.getRewardItem() != null){
+                                player.getInventory().add(selectedTask.getRewardItem());
+                            }
+                            System.out.println("You completed the task!");
+
+                        }
+                    }
+                    break;
+            }
+            
         }
 
 
         
+    }
+
+
+
+    static void battle(Player player,Enemy enemy){
+        System.out.println("Wild " + enemy.getName() + " appeared!");
+
+        while(enemy.getHealth() > 0 || player.getHealth() > 0){
+            System.out.println("Enemy Health:" + enemy.getHealth());
+            System.out.println("Your Health:" + player.getHealth());
+            System.out.println("What will you do? \n 1. Attack \n 2. Run \n defend");
+            int choice = scanner.nextInt();
+
+            switch(choice){
+                case 1: 
+                    System.out.println("You attack the " + enemy.getName() + " for 5 damage!");
+                    enemy.damaged(5);
+                    break;
+            }
+        }
+
     }
 }
 

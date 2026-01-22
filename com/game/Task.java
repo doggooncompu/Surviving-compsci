@@ -4,11 +4,21 @@ public class Task {
     private boolean completed;
     private int penaltyHealth;
 
+    private int energyRequired;
+
     private Item rewardItem;
     private int daystoComplete;
 
 
+    public int getenergyRequired(){
+        return this.energyRequired;
+    }
 
+
+    public int subtractEnergyRequired(int amount){
+        this.energyRequired = this.energyRequired - amount;
+        return this.energyRequired;
+    }
  
     public void setCompleted(boolean completed){
         this.completed = completed;
@@ -16,7 +26,7 @@ public class Task {
     public boolean isCompleted(){
         return this.completed;
     }
-    public Task( int penaltyHealth, int daystoComplete){
+    public Task( int penaltyHealth, int daystoComplete, int energyRequired, Item rewardItem){
         this.penaltyHealth = penaltyHealth;
         this.daystoComplete = daystoComplete;
         this.completed = false;

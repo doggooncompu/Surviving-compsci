@@ -9,15 +9,24 @@ public class Player {
     private int StudyPoints;
     private int energy;
 
+    private int damage;
+
 
     private ArrayList<Task> tasks = new ArrayList<>();
 
     private ArrayList<Item> inventory = new ArrayList<>();
 
 
-
     public Player(String name){
         this.name = name;
+    }
+
+    public void setDamage(int damage){
+        this.damage = damage;
+    }
+
+    public int getDamage(){
+        return this.damage;
     }
 
     public void setHealth(int health){
@@ -66,6 +75,21 @@ public class Player {
         for(Task t : this.tasks){
             t.time();
         }
+
+        for(Task t: this.tasks){
+            if(t.getDaystoComplete() <= 0 && !t.isCompleted()){
+                this.damaged(t.getPenaltyHealth());
+                System.out.println("You failed to complete a task and lost " + t.getPenaltyHealth() + " health!");
+                t.setCompleted(true);
+            }
+        }
+
+        for(int i = this.tasks.size() -1; i >=0; i--){
+            if(this.tasks.get(i).isCompleted()){
+                this.tasks.remove(i);
+                this.setDamage(this.getDamage()+1);
+            }
+        }
     }
 
 
@@ -77,8 +101,8 @@ public class Player {
         this.StudyPoints += StudyPoints;
     }
 
-    public void getEnergy(int energy){
-        this.energy += energy;
+    public int getEnergy(){
+        return this.energy ;
     }
 
     public void useEnergy(int energy){
